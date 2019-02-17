@@ -11,7 +11,8 @@ powerline-daemon -q
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="amuse"
+ZSH_THEME="darkblood"
+# ZSH_THEME="gallifrey"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -104,6 +105,7 @@ alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 # Shortcuts
 alias open='xdg-open'
 alias 350='cd ~/Documents/CSCI350/'
-alias 368='cd ~/Documents/CSCI368/'
+alias 368='cd ~/Documents/ITP368/'
 alias 360='cd ~/Documents/CSCI360/'
 alias lab='vim ~/Documents/lab.py'
+alias box='cd ~/Dropbox/'
