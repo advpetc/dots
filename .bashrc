@@ -141,8 +141,16 @@ ex ()
 # better yaourt colors
 export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35"
 
-# For dotfiles 
-alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+# pip env
+export PATH="$PATH:/home/advpetc/.local/bin"
 
-# Shortcuts
-alias open='xdg-open'
+# vi mode
+set -o vi
+
+# Nodejs
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

@@ -1,127 +1,138 @@
-"vundle
+let mapleader =","
+
+call plug#begin('~/.vim/plugged')
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex'}
+Plug 'tpope/vim-commentary'
+Plug 'scrooloose/nerdtree'
+Plug 'bling/vim-airline'
+Plug 'Raimondi/delimitMate'
+Plug 'advpetc/vim-template'
+Plug 'honza/vim-snippets'
+Plug 'kien/ctrlp.vim'
+Plug 'SirVer/ultisnips'
+Plug 'ryanoasis/vim-devicons'
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+endif
+Plug 'majutsushi/tagbar'
+Plug 'junegunn/goyo.vim'
+call plug#end()
+
+" support for vim-latex-live-preview
+let g:livepreview_previewer = 'evince'
+
+" Some basics:
+filetype plugin on
+" Load plugins according to detected filetype.
+filetype plugin indent on
+nnoremap c "_c
 set nocompatible
-filetype off
-
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
-"git interface
-Plugin 'tpope/vim-fugitive'
-"filesystem
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'kien/ctrlp.vim' 
-
-"html
-"  isnowfy only compatible with python not python3
-Plugin 'isnowfy/python-vim-instant-markdown'
-Plugin 'jtratner/vim-flavored-markdown'
-Plugin 'suan/vim-instant-markdown'
-Plugin 'nelstrom/vim-markdown-preview'
-"python sytax checker
-Plugin 'nvie/vim-flake8'
-Plugin 'vim-scripts/Pydiction'
-Plugin 'vim-scripts/indentpython.vim'
-Plugin 'scrooloose/syntastic'
-
-"auto-completion stuff
-"Plugin 'klen/python-mode'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'klen/rope-vim'
-"Plugin 'davidhalter/jedi-vim'
-Plugin 'ervandew/supertab'
-""code folding
-Plugin 'tmhedberg/SimpylFold'
-
-"Colors!!!
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'jnurmine/Zenburn'
-
-call vundle#end()
-
-filetype plugin indent on    " enables filetype detection
-let g:SimpylFold_docstring_preview = 1
-
-"autocomplete
-let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
-
-"custom keys
-let mapleader=" "
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-"
-call togglebg#map("<F5>")
-"colorscheme zenburn
-"set guifont=Monaco:h14
-
-let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
-
-"I don't like swap files
-set noswapfile
-
-"turn on numbering
-set nu
-
-"python with virtualenv support
-py << EOF
-import os.path
-import sys
-import vim
-if 'VIRTUA_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  sys.path.insert(0, project_base_dir)
-  activate_this = os.path.join(project_base_dir,'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
-EOF
-
-"it would be nice to set tag files by the active virtualenv here
-":set tags=~/mytags "tags for ctags and taglist
-"omnicomplete
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-
-"------------Start Python PEP 8 stuff----------------
-" Number of spaces that a pre-existing tab is equal to.
-au BufRead,BufNewFile *py,*pyw,*.c,*.h set tabstop=4
-
-"spaces for indents
-au BufRead,BufNewFile *.py,*pyw set shiftwidth=4
-au BufRead,BufNewFile *.py,*.pyw set expandtab
-au BufRead,BufNewFile *.py set softtabstop=4
-
-" Use the below highlight group when displaying bad whitespace is desired.
-highlight BadWhitespace ctermbg=red guibg=red
-
-" Display tabs at the beginning of a line in Python mode as bad.
-au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
-" Make trailing whitespace be flagged as bad.
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
-
-" Wrap text after a certain number of characters
-au BufRead,BufNewFile *.py,*.pyw, set textwidth=100
-
-" Use UNIX (\n) line endings.
-au BufNewFile *.py,*.pyw,*.c,*.h set fileformat=unix
-
-" Set the default file encoding to UTF-8:
-set encoding=utf-8
-
-" For full syntax highlighting:
-let python_highlight_all=1
 syntax on
+set encoding=utf-8
+set nu rnu
+" Enable autocompletion
+set wildmode=longest,list,full
 
-" Keep indentation level from previous line:
-autocmd FileType python set autoindent
+" indentations
 
-" make backspaces more powerfull
-set backspace=indent,eol,start
+" Indent according to previous line.
+set autoindent
+" Use spaces instead of tabs.
+set expandtab
+" Tab key indents by 4 spaces.
+set softtabstop =4
+" >> indents by 4 spaces.
+set shiftwidth  =4
+" >> indents to next multiple of 'shiftwidth'.
+set shiftround
+" copy ignore line number
+set mouse       =a
+set bg=light
+set go=a
+set mouse=a
+set nohlsearch
+set clipboard=unnamedplus
+" Spell-check set to <leader>o, 'o' for 'orthography':
+map <leader>o :setlocal spell! spelllang=en_us<CR>
 
+" Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
+set splitbelow splitright
 
-"Folding based on indentation:
-autocmd FileType python set foldmethod=indent
-"use space to open folds
-nnoremap <space> za 
-"----------Stop python PEP 8 stuff--------------
+" Copy selected text to system clipboard (requires gvim/nvim/vim-x11 installed):
+vnoremap <C-c> "+y
+map <C-p> "+P
 
-"js stuff"
-autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+" Shortcuts
+
+" Quick Update
+noremap <Leader>s :update<CR>
+" Jumping to previous copy pasted
+nmap <Leader>j :call GotoJump()<CR>
+" Quick access previous register
+nmap <Leader>r :reg<CR>
+" Quick Save
+map <Leader>w :w<CR>
+
+" Shortening split navigation, saving a keypress:
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" Nerd tree
+map <leader>n :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Vim-template
+let g:email = "chenhaoy@usc.edu"
+
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" Devicons
+set encoding=UTF-8
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+
+" Tagbar
+nnoremap <silent> <Leader>b :TagbarToggle<CR>
+
+" Goyo
+nnoremap <Leader>g :Goyo<CR>
+
+" Utilities
+
+"Always set to current directory
+autocmd BufEnter * silent! lcd %:p:h
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+" Uncomment the following to have Vim jump to the last position when
+" reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
+endif
+
+" colorscheme
+colorscheme elflord
+
+" Functions
+function! GotoJump()
+    jumps
+    let j = input("Please select your jump: ")
+    if j != ''
+        let pattern = '\v\c^\+'
+        if j =~ pattern
+            let j = substitute(j, pattern, '', 'g')
+            execute "normal " . j . "\<c-i>"
+        else
+            execute "normal " . j . "\<c-o>"
+        endif
+    endif
+endfunction
