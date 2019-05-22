@@ -5,6 +5,7 @@ Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex'}
 Plug 'tpope/vim-commentary'
 Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'Raimondi/delimitMate'
 Plug 'advpetc/vim-template'
 Plug 'honza/vim-snippets'
@@ -50,7 +51,7 @@ set shiftwidth  =4
 " >> indents to next multiple of 'shiftwidth'.
 set shiftround
 " copy ignore line number
-set mouse       =a
+set mouse=a
 set bg=light
 set go=a
 set mouse=a
@@ -83,12 +84,18 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+" Vim-airline and Vim-airline theme
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#left_sep = ' '
+" let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_theme = 'minimalist'
+
 " Nerd tree
 map <leader>n :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Vim-template
-let g:email = "chenhaoy@usc.edu"
+let g:email = "peter@peterchen.xyz"
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger="<tab>"
