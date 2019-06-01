@@ -2,8 +2,8 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/advpetc/.oh-my-zsh"
-
+export ZSH="/Users/Haoyang/.oh-my-zsh"
+export PATH="$HOME/miniconda3/bin:$PATH"
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -120,7 +120,6 @@ export NVM_DIR="$HOME/.nvm"
 # these are slow
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-alias loadnvm=". $NVM_DIR/nvm.sh"
 
 # Fuzzy Finder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -132,9 +131,10 @@ alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
 alias v='nvim'
-alias vim='nvim'
 alias ssh_350='ssh -p2222 csci350@127.0.0.1'
-
+alias lcs='leetcode show -g -l cpp '
+alias lct='leetcode test '
+alias lcsub='leetcode submit '
 # functions
 function chpwd() {
     lsd

@@ -19,14 +19,17 @@ else
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
+Plug 'Shougo/deoplete-clangx'
 Plug 'majutsushi/tagbar'
 Plug 'junegunn/goyo.vim'
+Plug 'Yggdroot/indentLine'
+" Plug 'gauteh/vim-cppman'
 call plug#end()
 
-" support for vim-latex-live-preview
-let g:livepreview_previewer = 'evince'
 
-" Some basics:
+" ================================================================================
+" basic settings
+" ================================================================================
 filetype plugin on
 " Load plugins according to detected filetype.
 filetype plugin indent on
@@ -35,21 +38,27 @@ set nocompatible
 syntax on
 set encoding=utf-8
 set nu rnu
+set tw=80
 " Enable autocompletion
 set wildmode=longest,list,full
+" show invisibles
+set list
+set listchars=tab:‣\ ,trail:·,precedes:«,extends:»,eol:¬
 
 " indentations
-
 " Indent according to previous line.
 set autoindent
 " Use spaces instead of tabs.
 set expandtab
+set cindent
+set smartindent
 " Tab key indents by 4 spaces.
-set softtabstop =4
+set softtabstop=4
 " >> indents by 4 spaces.
-set shiftwidth  =4
+set shiftwidth=4
 " >> indents to next multiple of 'shiftwidth'.
 set shiftround
+
 " copy ignore line number
 set mouse=a
 set bg=light
@@ -67,8 +76,10 @@ set splitbelow splitright
 vnoremap <C-c> "+y
 map <C-p> "+P
 
-" Shortcuts
 
+" ================================================================================
+" Keybindings
+" ================================================================================
 " Quick Update
 noremap <Leader>s :update<CR>
 " Jumping to previous copy pasted
@@ -84,11 +95,18 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+
+" ================================================================================
+" Plugin Settings
+" ================================================================================
 " Vim-airline and Vim-airline theme
 " let g:airline#extensions#tabline#enabled = 1
 " let g:airline#extensions#tabline#left_sep = ' '
 " let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_theme = 'minimalist'
+
+" support for vim-latex-live-preview
+let g:livepreview_previewer = 'evince'
 
 " Nerd tree
 map <leader>n :NERDTreeToggle<CR>
@@ -114,12 +132,13 @@ nnoremap <silent> <Leader>b :TagbarToggle<CR>
 " Goyo
 nnoremap <Leader>g :Goyo<CR>
 
+" ================================================================================
 " Utilities
-
+" ================================================================================
 "Always set to current directory
 autocmd BufEnter * silent! lcd %:p:h
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-" Uncomment the following to have Vim jump to the last position when
+" Have Vim jump to the last position when
 " reopening a file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -129,7 +148,9 @@ endif
 " colorscheme
 colorscheme elflord
 
+" ================================================================================
 " Functions
+" ================================================================================
 function! GotoJump()
     jumps
     let j = input("Please select your jump: ")
