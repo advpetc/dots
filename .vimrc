@@ -23,6 +23,7 @@ Plug 'Shougo/deoplete-clangx'
 Plug 'majutsushi/tagbar'
 Plug 'junegunn/goyo.vim'
 Plug 'Yggdroot/indentLine'
+Plug 'Chiel92/vim-autoformat'
 " Plug 'gauteh/vim-cppman'
 call plug#end()
 
@@ -87,7 +88,7 @@ nmap <Leader>j :call GotoJump()<CR>
 " Quick access previous register
 nmap <Leader>r :reg<CR>
 " Quick Save
-map <Leader>w :w<CR>
+map <Leader>w :w<CR> :Autoformat<CR>
 
 " Shortening split navigation, saving a keypress:
 map <C-h> <C-w>h
@@ -95,6 +96,9 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsJumpForwardTrigger="<c-f>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 " ================================================================================
 " Plugin Settings
@@ -131,6 +135,14 @@ nnoremap <silent> <Leader>b :TagbarToggle<CR>
 
 " Goyo
 nnoremap <Leader>g :Goyo<CR>
+
+" Ctrl-P
+let g:ctrlp_use_caching = 0
+
+" vim-autoformat
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+" let g:autoformat_remove_trailing_spaces = 0
 
 " ================================================================================
 " Utilities
