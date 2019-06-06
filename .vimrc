@@ -77,7 +77,6 @@ set splitbelow splitright
 vnoremap <C-c> "+y
 map <C-p> "+P
 
-
 " ================================================================================
 " Keybindings
 " ================================================================================
@@ -96,9 +95,6 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-let g:UltiSnipsExpandTrigger="<c-e>"
-let g:UltiSnipsJumpForwardTrigger="<c-f>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 " ================================================================================
 " Plugin Settings
@@ -121,8 +117,11 @@ let g:email = "peter@peterchen.xyz"
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsJumpForwardTrigger="<c-f>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+
+" Deoplete
+set completeopt-=preview
 
 " Devicons
 set encoding=UTF-8
