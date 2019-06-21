@@ -24,6 +24,7 @@ Plug 'majutsushi/tagbar'
 Plug 'junegunn/goyo.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'Chiel92/vim-autoformat'
+Plug 'tpope/vim-surround'
 " Plug 'gauteh/vim-cppman'
 call plug#end()
 
@@ -82,19 +83,23 @@ map <C-p> "+P
 " ================================================================================
 " Quick Update
 noremap <Leader>s :update<CR>
+
+" Keep your eye to the center
+nnoremap j jzz
+nnoremap k kzz
+
 " Jumping to previous copy pasted
 nmap <Leader>j :call GotoJump()<CR>
 " Quick access previous register
 nmap <Leader>r :reg<CR>
 " Quick Save
-map <Leader>w :w<CR> :Autoformat<CR>
+map <Leader>w :w<CR>
 
 " Shortening split navigation, saving a keypress:
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-
 
 " ================================================================================
 " Plugin Settings
@@ -103,7 +108,7 @@ map <C-l> <C-w>l
 " let g:airline#extensions#tabline#enabled = 1
 " let g:airline#extensions#tabline#left_sep = ' '
 " let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline_theme = 'minimalist'
+let g:airline_theme = 'hybrid'
 
 " support for vim-latex-live-preview
 let g:livepreview_previewer = 'evince'
@@ -121,13 +126,16 @@ let g:UltiSnipsJumpForwardTrigger="<c-f>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 " Deoplete
+let g:deoplete#enable_at_startup = 1
 set completeopt-=preview
 
 " Devicons
 set encoding=UTF-8
-
-" Deoplete
-let g:deoplete#enable_at_startup = 1
+let g:webdevicons_enable_nerdtree = 1
+" adding the flags to NERDTree
+let g:webdevicons_enable_nerdtree = 1
+" adding the column to vimfiler
+let g:webdevicons_enable_vimfiler = 1
 
 " Tagbar
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
@@ -142,6 +150,7 @@ let g:ctrlp_use_caching = 0
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 " let g:autoformat_remove_trailing_spaces = 0
+au BufWrite * :Autoformat
 
 " ================================================================================
 " Utilities
