@@ -2,7 +2,7 @@ let mapleader =","
 
 call plug#begin('~/.vim/plugged')
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex'}
-Plug 'tpope/vim-commentary'
+Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -108,7 +108,7 @@ map <C-l> <C-w>l
 " let g:airline#extensions#tabline#enabled = 1
 " let g:airline#extensions#tabline#left_sep = ' '
 " let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline_theme = 'hybrid'
+let g:airline_theme = 'minimalist'
 
 " support for vim-latex-live-preview
 let g:livepreview_previewer = 'evince'
@@ -149,8 +149,11 @@ let g:ctrlp_use_caching = 0
 " vim-autoformat
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
+map <leader>F :Autoformat<CR>
 " let g:autoformat_remove_trailing_spaces = 0
-au BufWrite * :Autoformat
+" au BufWrite * :Autoformat
+
+" nerdcommenter
 
 " ================================================================================
 " Utilities
