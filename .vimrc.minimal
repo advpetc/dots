@@ -1,0 +1,101 @@
+" Plugins
+call plug#begin()
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'preservim/nerdtree'
+if has('nvim')
+	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+	Plug 'Shougo/deoplete.nvim'
+	Plug 'roxma/nvim-yarp'
+	Plug 'roxma/vim-hug-neovim-rpc'
+endif
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+call plug#end()
+
+" Forget being compatible with good ol' vi
+set nocompatible
+
+" Get that filetype stuff happening
+filetype on
+filetype plugin on
+filetype indent on
+
+" Turn on that syntax highlighting
+syntax on
+
+" Why is this not a default
+set hidden
+
+" Don't update the display while executing macros
+" set lazyredraw
+
+" At least let yourself know what mode you're in
+set showmode
+
+" Enable enhanced command-line completion. Presumes you have compiled
+" with +wildmenu. See :help 'wildmenu'
+set wildmenu
+
+""" Keys
+let mapleader = ","
+
+" Let's make it easy to edit this file (mnemonic for the key sequence is
+" 'e'dit 'v'imrc)
+nmap <silent> ,ev :e ~/.vimrc<cr>
+
+" And to source this file as well (mnemonic for the key sequence is
+" 's'ource 'v'imrc)
+nmap <silent> ,sv :so ~/.vimrc<cr>
+
+" Keep center
+nnoremap j jzz
+nnoremap k kzz
+
+" Clipboard
+set clipboard+=unnamedplus
+
+" Path: search down into subfolders
+" Provide tab-completion for all file-related tasks
+set path+=**
+
+" Show line number
+set number
+
+" Shortcuts
+nnoremap ,w :w<CR>
+nnoremap ,e :!%:p<CR>
+
+" Use cursor to navigate
+set mouse=a
+
+" Nerdtree
+nnoremap <leader>n :NERDTreeFocus<CR>
+" nnoremap <C-n> :NERDTree<CR>
+nnoremap <leader>t :NERDTreeToggle<CR>
+nnoremap <leader>f :NERDTreeFind<CR>
+nnoremap <leader>v :NERDTreeVCS<CR>
+
+" Neosnippet
+let g:deoplete#enable_at_startup = 1
+"" Plugin key-mappings.
+"" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" Vim-go
+"" show GoInfo while moving
+let g:go_auto_type_info = 1 
+set updatetime=100 " refresh faster
+"" Identifier highlighting
+let g:go_auto_sameids = 1
+nnoremap <leader>r :GoReferrers<CR>
+
+" FZF
+" - down / up / left / right
+let g:fzf_layout = { 'down': '40%' }
+nnoremap <C-p> :FZF<CR>
